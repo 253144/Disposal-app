@@ -1,0 +1,513 @@
+FORMAT: 1A
+HOST: http://localhost:8000/
+
+# DisposalAPI
+
+API pod aplikacje wywozu smieci.
+
+## Kontenery [/kontenery]
+
+### Wylistuj wszystkie kontenery [GET]
+
++ Response 200 (application/json)
+
+        HTTP 200 OK
+        Allow: GET, POST, HEAD, OPTIONS
+        Content-Type: application/json
+        Vary: Accept
+        
+        [
+            {
+                "id": 1,
+                "nazwa": "Papier 1",
+                "rozmiar": 100.0,
+                "rodzaj_odpadow": "papier"
+            },
+            {
+                "id": 2,
+                "nazwa": "Papier 2",
+                "rozmiar": 200.0,
+                "rodzaj_odpadow": "papier"
+            },
+            {
+                "id": 3,
+                "nazwa": "Plastik 1",
+                "rozmiar": 100.0,
+                "rodzaj_odpadow": "plastik"
+            }
+        ]
+        
++ Response 400 (application/html)
+
+        <!doctype html>
+        <html lang="en">
+        <head>
+          <title>Bad Request (400)</title>
+        </head>
+        <body>
+          <h1>Bad Request (400)</h1><p></p>
+        </body>
+        </html>
+
++ Response 401 (application/html)
+
+        <!doctype html>
+        <html lang="en">
+        <head>
+          <title>UnAuthorized User (400)</title>
+        </head>
+        <body>
+          <h1>UnAuthorized User (400)</h1><p></p>
+        </body>
+        </html>
+        
++ Response 404 (application/html)
+
+        <html lang="en">
+        <head>
+          <title>Not Found</title>
+        </head>
+        <body>
+          <h1>Not Found</h1><p>The requested resource was not found on this server.</p>
+        </body>
+        </html>
+      
+### Stworz nowy kontener [POST]
+
++ Request (application/json)
+
+        {
+            "nazwa": "Plastik 2",
+            "rozmiar": 200.0,
+            "rodzaj_odpadow": "plastik",
+            "cena": 2
+        }
+
++ Response 201 (application/json)
+
+        HTTP 201 Created
+        Allow: GET, POST, HEAD, OPTIONS
+        Content-Type: application/json
+        Vary: Accept
+        
+        {
+            "id": 4,
+            "nazwa": "Plastik 2",
+            "rozmiar": 200.0,
+            "rodzaj_odpadow": "plastik",
+            "cena": 2
+        }
+
+## Zamowienia [/zamowienia]
+
+### Wylistuj wszystkie zamowienia [GET]
+
++ Response 200 (application/json)
+        
+        HTTP 200 OK
+        Allow: GET, POST, HEAD, OPTIONS
+        Content-Type: application/json
+        Vary: Accept
+
+        [
+         {
+        "id": 1,
+        "status_realizacji": "PRZYJETE",
+        "status_platnosci": "NIE_OPLACONE",
+        "data_zamowienia": "2023-01-09",
+        "data_odbioru": "2023-03-01",
+        "uzytkownik": 1
+         },
+         {
+        "id": 2,
+        "status_realizacji": "PRZYJETE",
+        "status_platnosci": "NIE_OPLACONE",
+        "data_zamowienia": "2023-01-09",
+        "data_odbioru": "2023-01-19",
+        "uzytkownik": 3
+         }
+        ]
+        
++ Response 400 (application/html)
+
+        <!doctype html>
+        <html lang="en">
+        <head>
+          <title>Bad Request (400)</title>
+        </head>
+        <body>
+          <h1>Bad Request (400)</h1><p></p>
+        </body>
+        </html>
+
++ Response 401 (application/html)
+
+        <!doctype html>
+        <html lang="en">
+        <head>
+          <title>UnAuthorized User (400)</title>
+        </head>
+        <body>
+          <h1>UnAuthorized User (400)</h1><p></p>
+        </body>
+        </html>
+        
++ Response 404 (application/html)
+
+        <html lang="en">
+        <head>
+          <title>Not Found</title>
+        </head>
+        <body>
+          <h1>Not Found</h1><p>The requested resource was not found on this server.</p>
+        </body>
+        </html>
+        
+### Dodaj zamowien [POST]
+
++ Request (application/json)
+
+        {
+            "status_realizacji": "PRZYJETE",
+            "status_platnosci": "NIE_OPLACONE",
+            "data_zamowienia": "2023-01-09",
+            "data_odbioru": "2023-03-01",
+            "uzytkownik": 1
+        }
+
++ Response 201 (application/json)
+
+        HTTP 201 Created
+        Allow: GET, POST, HEAD, OPTIONS
+        Content-Type: application/json
+        Vary: Accept
+
+        {
+        "id": 3,
+        "status_realizacji": "PRZYJETE",
+        "status_platnosci": "NIE_OPLACONE",
+        "data_zamowienia": "2023-02-03",
+        "data_odbioru": "2023-03-08",
+        "uzytkownik": 4
+        }
+        
+## Wykaz wszystkich zamowien [/wykaz]
+
+### Wylistuj wykaz zamowien [GET]
+
++ Response 200 (application/json)
+
+        HTTP 200 OK
+        Allow: GET, POST, HEAD, OPTIONS
+        Content-Type: application/json
+        Vary: Accept
+
+        [
+        {
+        "id": 1,
+        "zamowienie": 1,
+        "kontener": 1
+        },
+        {
+        "id": 2,
+        "zamowienie": 2,
+        "kontener": 3
+         }
+        ]
+        
+### Dodaj do wykazu zamowien [POST]
+
++ Request (application/json)
+
+        {
+         "zamowienie": 3,
+         "kontener": 3
+        }
+
++ Response 201 (application/json)
+
+        HTTP 201 Created
+        Allow: GET, POST, HEAD, OPTIONS
+        Content-Type: application/json
+        Vary: Accept
+
+        {
+         "id": 3,
+         "zamowienie": 3,
+         "kontener": 3
+        }
+        
+## Ceny [/ceny]
+
+### Wylistuj ceny kontenerów [GET]
+
++ Response 200 (application/json)
+
+        HTTP 200 OK
+        Allow: GET, POST, HEAD, OPTIONS
+        Content-Type: application/json
+        Vary: Accept
+
+        [
+        {
+        "id": 1,
+        "cena": 300,
+        "opis": "Cena małego kontenera",
+        "data_aktualizacji": "2023-01-09"
+         },
+         {
+        "id": 2,
+        "cena": 500,
+        "opis": "Cena sredniego kontenera",
+        "data_aktualizacji": "2023-01-09"
+         }
+        ]
+        
++ Response 400 (application/html)
+
+        <!doctype html>
+        <html lang="en">
+        <head>
+          <title>Bad Request (400)</title>
+        </head>
+        <body>
+          <h1>Bad Request (400)</h1><p></p>
+        </body>
+        </html>
+
++ Response 401 (application/html)
+
+        <!doctype html>
+        <html lang="en">
+        <head>
+          <title>UnAuthorized User (400)</title>
+        </head>
+        <body>
+          <h1>UnAuthorized User (400)</h1><p></p>
+        </body>
+        </html>
+        
++ Response 404 (application/html)
+
+        <html lang="en">
+        <head>
+          <title>Not Found</title>
+        </head>
+        <body>
+          <h1>Not Found</h1><p>The requested resource was not found on this server.</p>
+        </body>
+        </html>
+        
+### Dodaj cene [POST]
+
++ Request (application/json)
+
+        {
+        "cena": 650,
+        "opis": "Cena duzego kontenera",
+        "data_aktualizacji": "2023-01-10"
+        }
+
++ Response 201 (application/json)
+
+        HTTP 201 Created
+        Allow: GET, POST, HEAD, OPTIONS
+        Content-Type: application/json
+        Vary: Accept
+
+        {
+        "id": 3,
+        "cena": 650,
+        "opis": "Cena duzego kontenera",
+        "data_aktualizacji": "2023-01-10"
+        }
+
+       
+## Uzytkownicy [/uzytkownicy]
+
+### Wylistuj uzytkownikow [GET]
+
++ Response 200 (application/json)
+
+        HTTP 200 OK
+        Allow: GET, POST, HEAD, OPTIONS
+        Content-Type: application/json
+        Vary: Accept
+
+        [
+        {
+        "id": 1,
+        "imie": "Harry",
+        "nazwisko": "Potter",
+        "telefon": "558 11",
+        "adres": 1
+          },
+          {
+        "id": 2,
+        "imie": "Severys",
+        "nazwisko": "Snape",
+        "telefon": "6666 6666",
+        "adres": 1
+          },
+         {
+        "id": 3,
+        "imie": "Ron",
+        "nazwisko": "Wesley",
+        "telefon": "420 0",
+        "adres": 1
+            },
+         {
+        "id": 4,
+        "imie": "Hermiona",
+        "nazwisko": "Granger",
+        "telefon": "123123123",
+        "adres": 1
+         }
+        ]
+        
++ Response 400 (application/html)
+
+        <!doctype html>
+        <html lang="en">
+        <head>
+          <title>Bad Request (400)</title>
+        </head>
+        <body>
+          <h1>Bad Request (400)</h1><p></p>
+        </body>
+        </html>
+
++ Response 401 (application/html)
+
+        <!doctype html>
+        <html lang="en">
+        <head>
+          <title>UnAuthorized User (400)</title>
+        </head>
+        <body>
+          <h1>UnAuthorized User (400)</h1><p></p>
+        </body>
+        </html>
+        
++ Response 404 (application/html)
+
+        <html lang="en">
+        <head>
+          <title>Not Found</title>
+        </head>
+        <body>
+          <h1>Not Found</h1><p>The requested resource was not found on this server.</p>
+        </body>
+        </html>
+        
+### Dodaj uzytkownika [POST]
+
++ Request (application/json)
+
+        {
+        "id": 5,
+        "imie": "Adam",
+        "nazwisko": "Adamowicz",
+        "telefon": "123-444-222",
+        "adres": 2
+        }
+
++ Response 201 (application/json)
+
+        HTTP 201 Created
+        Allow: GET, POST, HEAD, OPTIONS
+        Content-Type: application/json
+        Vary: Accept
+
+        {
+        "id": 5,
+        "imie": "Adam",
+        "nazwisko": "Adamowicz",
+        "telefon": "123-444-222",
+        "adres": 2
+        }
+        
+## Adresy [/adresy]
+
+### Wylistuj adresy [GET]
+
++ Response 200 (application/json)
+
+        HTTP 200 OK
+        Allow: GET, POST, HEAD, OPTIONS
+        Content-Type: application/json
+        Vary: Accept
+
+        [
+         {
+        "id": 1,
+        "ulica": "Zamkowa",
+        "nr_domu": "1",
+        "nr_mieszkania": "1",
+        "kod_pocztowy": "5235",
+        "miasto": "Hogwart"
+           }
+        ]
+        
++ Response 400 (application/html)
+
+        <!doctype html>
+        <html lang="en">
+        <head>
+          <title>Bad Request (400)</title>
+        </head>
+        <body>
+          <h1>Bad Request (400)</h1><p></p>
+        </body>
+        </html>
+
++ Response 401 (application/html)
+
+        <!doctype html>
+        <html lang="en">
+        <head>
+          <title>UnAuthorized User (400)</title>
+        </head>
+        <body>
+          <h1>UnAuthorized User (400)</h1><p></p>
+        </body>
+        </html>
+        
++ Response 404 (application/html)
+
+        <html lang="en">
+        <head>
+          <title>Not Found</title>
+        </head>
+        <body>
+          <h1>Not Found</h1><p>The requested resource was not found on this server.</p>
+        </body>
+        </html>
+
+### Dodaj adres [POST]
+
++ Request (application/json)
+
+        {
+        "ulica": "Modra",
+        "nr_domu": "1",
+        "nr_mieszkania": "1",
+        "kod_pocztowy": "42-123",
+        "miasto": "Wroclaw"
+        }
+
++ Response 201 (application/json)
+
+        HTTP 201 Created
+        Allow: GET, POST, HEAD, OPTIONS
+        Content-Type: application/json
+        Vary: Accept
+
+        {
+        "id": 2,
+        "ulica": "Modra",
+        "nr_domu": "1",
+        "nr_mieszkania": "1",
+        "kod_pocztowy": "42-123",
+        "miasto": "Wroclaw"
+        }
