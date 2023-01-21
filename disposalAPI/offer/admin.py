@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Contener, Price
+from .models import Container, Price
 
 # Register your models here.
 
-admin.site.register(Contener)
+admin.site.register(Container)
 admin.site.register(Price)

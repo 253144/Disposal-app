@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
-from offer.views import ContenerViewSet, PriceViewSet
+from offer.views import ContainerViewSet, PriceViewSet
 from clients.views import ClientViewSet, AddressViewSet
 from orders.views import OrderViewSet, OrderListViewSet
 
@@ -25,7 +25,7 @@ router.register(r'list-of-orders', OrderListViewSet)
 router.register(r'orders', OrderViewSet)
 router.register(r'users', ClientViewSet)
 router.register(r'addresses', AddressViewSet)
-router.register(r'conteners', ContenerViewSet)
+router.register(r'Containers', ContainerViewSet)
 router.register(r'prices', PriceViewSet)
 
 

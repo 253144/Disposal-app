@@ -34,5 +34,5 @@ class Order(models.Model):
 
 
 class OrderList(models.Model):
-    zamowienie = models.ForeignKey('Order', on_delete=models.CASCADE)
-    kontener = models.ForeignKey('offer.Contener', on_delete=models.CASCADE)
+    order = models.ForeignKey('Order', on_delete=models.CASCADE)
+    container = models.ForeignKey('offer.Container', on_delete=models.CASCADE)

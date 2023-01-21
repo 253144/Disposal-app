@@ -1,15 +1,15 @@
-from .models import Contener, Price
+from .models import Container, Price
 from rest_framework import viewsets
 from rest_framework import permissions
-from .serializers import ContenerSerializer, PriceSerializer
+from .serializers import ContainerSerializer, PriceSerializer
 
 
-class ContenerViewSet(viewsets.ModelViewSet):
+class ContainerViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows conteners to be viewed or edited.
+    API endpoint that allows Containers to be viewed or edited.
     """
-    queryset = Contener.objects.all()
-    serializer_class = ContenerSerializer
+    queryset = Container.objects.all()
+    serializer_class = ContainerSerializer
     permission_classes = [permissions.AllowAny]
 
 class PriceViewSet(viewsets.ModelViewSet):

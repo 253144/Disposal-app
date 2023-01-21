@@ -1,10 +1,10 @@
-from .models import Contener, Price
+from .models import Container, Price
 from rest_framework import serializers
 
 
-class ContenerSerializer(serializers.ModelSerializer):
+class ContainerSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Contener
+        model = Container
         fields = '__all__'
 
 class PriceSerializer(serializers.ModelSerializer):
