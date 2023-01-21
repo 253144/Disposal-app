@@ -33,7 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'offer.apps.OfferConfig',
     'clients.apps.ClientsConfig',
-    'orders.apps.OrdersaConfig',
+    'orders.apps.OrdersConfig',
     'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
