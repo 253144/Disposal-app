@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'drf_yasg',
     'offer.apps.OfferConfig',
     'clients.apps.ClientsConfig',
     'orders.apps.OrdersConfig',
