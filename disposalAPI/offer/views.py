@@ -10,7 +10,7 @@ class ContainerViewSet(viewsets.ModelViewSet):
     """
     queryset = Container.objects.all()
     serializer_class = ContainerSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
 
 class PriceViewSet(viewsets.ModelViewSet):
     """
@@ -18,4 +18,4 @@ class PriceViewSet(viewsets.ModelViewSet):
     """
     queryset = Price.objects.all()
     serializer_class = PriceSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]

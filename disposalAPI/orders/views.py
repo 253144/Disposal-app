@@ -10,7 +10,7 @@ class OrderViewSet(viewsets.ModelViewSet):
     """
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
 
 class OrderListViewSet(viewsets.ModelViewSet):
     """
@@ -18,4 +18,4 @@ class OrderListViewSet(viewsets.ModelViewSet):
     """
     queryset = OrderList.objects.all()
     serializer_class = OrderListSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
