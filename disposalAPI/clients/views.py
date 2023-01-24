@@ -10,7 +10,7 @@ class ClientViewSet(viewsets.ModelViewSet):
     """
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
 
 class AddressViewSet(viewsets.ModelViewSet):
     """
@@ -18,4 +18,4 @@ class AddressViewSet(viewsets.ModelViewSet):
     """
     queryset = Address.objects.all()
     serializer_class = AddressSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
