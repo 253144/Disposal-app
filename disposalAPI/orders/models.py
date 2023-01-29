@@ -18,7 +18,7 @@ class Order(models.Model):
         UNPAID = 'UNPAID', _('UNPAID')
         PAID = 'PAID', _('PAID')
 
-    order_status= models.TextField(
+    order_status = models.TextField(
         max_length=15,
         choices=Status.choices,
         default=Status.ACTIVE)
@@ -32,7 +32,13 @@ class Order(models.Model):
     collect_date = models.DateField()
     client = models.ForeignKey('clients.Client', on_delete=models.CASCADE)
 
+    def __str__(self) -> str:
+        return super().__str__()
+
 
 class OrderList(models.Model):
     order = models.ForeignKey('Order', on_delete=models.CASCADE)
     container = models.ForeignKey('offer.Container', on_delete=models.CASCADE)
+
+    def __str__(self) -> str:
+        return super().__str__()

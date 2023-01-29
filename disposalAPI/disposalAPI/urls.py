@@ -28,7 +28,7 @@ from orders.views import OrderViewSet, OrderListViewSet
 router = routers.DefaultRouter()
 router.register(r'list-of-orders', OrderListViewSet)
 router.register(r'orders', OrderViewSet)
-router.register(r'users', ClientViewSet)
+router.register(r'clients', ClientViewSet)
 router.register(r'addresses', AddressViewSet)
 router.register(r'Containers', ContainerViewSet)
 router.register(r'prices', PriceViewSet)
