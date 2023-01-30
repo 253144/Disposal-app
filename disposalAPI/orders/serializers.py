@@ -39,7 +39,7 @@ class OrderListDetailSerializer(serializers.ModelSerializer):
 class OrderListDefaultSerializer(serializers.ModelSerializer):
     order = serializers.PrimaryKeyRelatedField(
         queryset=Order.objects.all(), required=True)
-    order = serializers.PrimaryKeyRelatedField(
+    container = serializers.PrimaryKeyRelatedField(
         queryset=Container.objects.all(), required=True)
 
     class Meta:
